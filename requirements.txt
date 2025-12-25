@@ -1,3 +1,10 @@
 streamlit
 openai
 PyMuPDF
+fitz
+streamlit
+openai
+pymupdf
+gspread
+google-auth
+pandas

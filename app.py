@@ -140,7 +140,8 @@
 #         except Exception as e:
 #             st.error(f"❌ Error: {str(e)}")
 
-
+from datetime import datetime
+print("App started at:", datetime.utcnow().isoformat())
 import os
 import time
 import smtplib

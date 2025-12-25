@@ -5,8 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '* * * * *'   # runs every hour
+    - cron: '* * * * *'   # runs every minute
   workflow_dispatch:
+
+concurrency:
+  group: run-app
+  cancel-in-progress: true
 
 jobs:
   run-app:

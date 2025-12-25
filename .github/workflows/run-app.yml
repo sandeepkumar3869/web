@@ -26,6 +26,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create Google credentials file
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > credentials.json
+
       - name: Run app.py
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

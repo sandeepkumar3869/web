@@ -7,4 +7,5 @@ openai
 pymupdf
 gspread
 google-auth
-pandas
+panda
+numpy

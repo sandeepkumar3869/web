@@ -1,11 +1,6 @@
-gspread
-google-auth
-panda
-numpy
-PyMuPDF==1.23.26
 streamlit
 openai
-PyMuPDF==1.26.7
+PyMuPDF==1.22.5
 gspread
 google-auth
 pandas

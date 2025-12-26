@@ -145,6 +145,7 @@ print("App started at:", datetime.utcnow().isoformat())
 import os
 import time
 import smtplib
+import time as time_module
 import pandas as pd
 import openai
 import fitz  # PyMuPDF
@@ -323,7 +324,8 @@ def main():
             sheet.update_cell(idx + 2, 4, str(e))
             sheet.update_cell(idx + 2, 5, "FAILED")
 
-        time.sleep(10)  # rate limiting (important)
+        # time.sleep(10)  # rate limiting (important)
+        time_module.sleep(10)
 
     print("Batch completed successfully.")
 

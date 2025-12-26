@@ -143,17 +143,18 @@
 from datetime import datetime
 print("App started at:", datetime.utcnow().isoformat())
 import os
-import time
 import smtplib
-import time as time_module
+# import time as time_module
 import pandas as pd
 import openai
 import fitz  # PyMuPDF
 import gspread
 from email.message import EmailMessage
 from google.oauth2.service_account import Credentials
-from datetime import *
+from datetime import datetime
+import time as time_module
 import pytz
+
 # ---------------- CONFIG ----------------
 SENDER_EMAIL = "sksandy3869@gmail.com"
 RESUME_PATH = "sandeep__resume.pdf"

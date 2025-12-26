@@ -303,7 +303,7 @@ def main():
             except Exception:
                 body = generate_email_fallback(company, post_name)
 
-            body_timestamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+            Body_TimeStamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
 
             subject = f"Application for {post_name.title()} – {company}"
 
@@ -311,7 +311,7 @@ def main():
 
             sheet.update_cell(idx + 2, 4, body)              # body
             sheet.update_cell(idx + 2, 5, "DONE")            # status
-            sheet.update_cell(idx + 2, 6, body_timestamp)    # Body_TimeStamp
+            sheet.update_cell(idx + 2, 7, Body_TimeStamp)    # Body_TimeStamp
 
 
         except Exception as e:

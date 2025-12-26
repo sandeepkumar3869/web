@@ -2,7 +2,7 @@ from datetime import datetime
 print("App started at:", datetime.utcnow().isoformat())
 import os
 import smtplib
-# import time as time_module
+
 import pandas as pd
 import openai
 import fitz  # PyMuPDF
@@ -10,8 +10,8 @@ import gspread
 from email.message import EmailMessage
 from google.oauth2.service_account import Credentials
 
-import pytz
-import time as tm
+
+import time
 
 
 # ---------------- CONFIG ----------------
@@ -144,51 +144,31 @@ def main():
             post_name = str(row.get("Post_name", "")).strip()
             company_from_sheet = str(row.get("Company_name", "")).strip()
 
-            # if not mail_id or not post_name:
-            #     raise ValueError("Missing Mail_ID or Post_name")
             if not mail_id or not post_name:
-                sheet.update_cell(idx + 2, 5, "SKIPPED")
-                sheet.update_cell(idx + 2, 7, datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%m/%d/%Y %H:%M:%S"))
-                continue
+                raise ValueError("Missing Mail_ID or Post_name")
+            
 
             company = extract_company_from_email(mail_id, company_from_sheet)
 
-            # try:
-            #     body = generate_email_body(company, post_name, resume_text)
-            # except Exception:
-            #     body = generate_email_fallback(company, post_name)
-
-            # subject = f"Application for {post_name.title()} – {company}"
-
-            # send_email(mail_id, subject, body)
-
-            # sheet.update_cell(idx + 2, 4, body)     # body
-            # sheet.update_cell(idx + 2, 5, "DONE")   # status
             try:
                 body = generate_email_body(company, post_name, resume_text)
             except Exception:
                 body = generate_email_fallback(company, post_name)
 
-            # Body_TimeStamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
-            
-
-            ist = pytz.timezone("Asia/Kolkata")
-            Body_TimeStamp = datetime.now(ist).strftime("%m/%d/%Y %H:%M:%S")
-
             subject = f"Application for {post_name.title()} – {company}"
 
             send_email(mail_id, subject, body)
 
-            sheet.update_cell(idx + 2, 4, body)              # body
-            sheet.update_cell(idx + 2, 5, "DONE")            # status
-            sheet.update_cell(idx + 2, 7, Body_TimeStamp)    # Body_TimeStamp
+            sheet.update_cell(idx + 2, 4, body)     # body
+            sheet.update_cell(idx + 2, 5, "DONE")   # status
+            
 
 
         except Exception as e:
             sheet.update_cell(idx + 2, 4, str(e))
             sheet.update_cell(idx + 2, 5, "FAILED")
 
-        tm.sleep(10)  # rate limiting (important)
+        time.sleep(10)  # rate limiting (important)
         
 
     print("Batch completed successfully.")

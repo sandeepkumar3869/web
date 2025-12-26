@@ -151,7 +151,8 @@ import fitz  # PyMuPDF
 import gspread
 from email.message import EmailMessage
 from google.oauth2.service_account import Credentials
-
+from datetime import *
+import pytz
 # ---------------- CONFIG ----------------
 SENDER_EMAIL = "sksandy3869@gmail.com"
 RESUME_PATH = "sandeep__resume.pdf"
@@ -303,7 +304,11 @@ def main():
             except Exception:
                 body = generate_email_fallback(company, post_name)
 
-            Body_TimeStamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+            # Body_TimeStamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+            
+
+            ist = pytz.timezone("Asia/Kolkata")
+            body_timestamp = datetime.now(ist).strftime("%m/%d/%Y %H:%M:%S")
 
             subject = f"Application for {post_name.title()} – {company}"
 

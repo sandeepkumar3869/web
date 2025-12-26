@@ -9,9 +9,10 @@ import fitz  # PyMuPDF
 import gspread
 from email.message import EmailMessage
 from google.oauth2.service_account import Credentials
-from datetime import datetime
+
 import pytz
-import time as time_module
+import time as tm
+
 
 # ---------------- CONFIG ----------------
 SENDER_EMAIL = "sksandy3869@gmail.com"
@@ -143,8 +144,12 @@ def main():
             post_name = str(row.get("Post_name", "")).strip()
             company_from_sheet = str(row.get("Company_name", "")).strip()
 
+            # if not mail_id or not post_name:
+            #     raise ValueError("Missing Mail_ID or Post_name")
             if not mail_id or not post_name:
-                raise ValueError("Missing Mail_ID or Post_name")
+                sheet.update_cell(idx + 2, 5, "SKIPPED")
+                sheet.update_cell(idx + 2, 7, datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%m/%d/%Y %H:%M:%S"))
+                continue
 
             company = extract_company_from_email(mail_id, company_from_sheet)
 
@@ -183,7 +188,7 @@ def main():
             sheet.update_cell(idx + 2, 4, str(e))
             sheet.update_cell(idx + 2, 5, "FAILED")
 
-        time_module.sleep(10)  # rate limiting (important)
+        tm.sleep(10)  # rate limiting (important)
         
 
     print("Batch completed successfully.")

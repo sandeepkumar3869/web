@@ -308,7 +308,7 @@ def main():
             
 
             ist = pytz.timezone("Asia/Kolkata")
-            body_timestamp = datetime.now(ist).strftime("%m/%d/%Y %H:%M:%S")
+            Body_TimeStamp = datetime.now(ist).strftime("%m/%d/%Y %H:%M:%S")
 
             subject = f"Application for {post_name.title()} – {company}"
 

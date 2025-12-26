@@ -287,17 +287,32 @@ def main():
 
             company = extract_company_from_email(mail_id, company_from_sheet)
 
+            # try:
+            #     body = generate_email_body(company, post_name, resume_text)
+            # except Exception:
+            #     body = generate_email_fallback(company, post_name)
+
+            # subject = f"Application for {post_name.title()} – {company}"
+
+            # send_email(mail_id, subject, body)
+
+            # sheet.update_cell(idx + 2, 4, body)     # body
+            # sheet.update_cell(idx + 2, 5, "DONE")   # status
             try:
                 body = generate_email_body(company, post_name, resume_text)
             except Exception:
                 body = generate_email_fallback(company, post_name)
 
+            body_timestamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+
             subject = f"Application for {post_name.title()} – {company}"
 
             send_email(mail_id, subject, body)
 
-            sheet.update_cell(idx + 2, 4, body)     # body
-            sheet.update_cell(idx + 2, 5, "DONE")   # status
+            sheet.update_cell(idx + 2, 4, body)              # body
+            sheet.update_cell(idx + 2, 5, "DONE")            # status
+            sheet.update_cell(idx + 2, 6, body_timestamp)    # Body_TimeStamp
+
 
         except Exception as e:
             sheet.update_cell(idx + 2, 4, str(e))

@@ -105,15 +105,15 @@ Resume:
 def generate_email_fallback(company, position):
     return f"""Dear Hiring Manager,
 
-I love everything about what {company} is doing. I don't have many hobbies outside coding. I am not athletic, am bad at singing, don't drink, and can't dance. Building is the only thing I am good at. At this point, I want to be a part of taking something from 0 to 1 or 1 to 100. I just want to be heads down chasing that goal.
 
 Hi,
 
-Really loved what you were building at {company} and wanted to get in touch to see if there are opportunities for the {position} role where I could help out—especially because I genuinely enjoy designing systems and working with data from start to finish.
+I am writing to apply for the {position} position at {company}.
+
 
 I worked on automation projects from the ground up at Target as a Data Analyst, creating systems that significantly reduced manual effort and accelerated data processing. I also performed advanced data analysis on large datasets to uncover trends that directly informed business decisions and improved operations.
 
-In parallel, I built a full-stack web application using Django during college, integrating machine learning models to deliver real-time insights. This strengthened my ability to architect end-to-end systems—from user interfaces to backend logic to ML integration.
+In parallel, I built a full-stack web application using Django during college, integrating machine learning models to deliver real-time insights. This strengthened my ability to architect end-to-end systems from user interfaces to backend logic to ML integration.
 
 I admire how {company} encourages disciplined thinking while solving problems in uncertain environments. That philosophy resonates with how I operate, and I’d be excited to contribute in the {position} capacity.
 
